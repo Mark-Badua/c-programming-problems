@@ -5,36 +5,22 @@
 bool isPalindrome(int x);
 
 int main(){
-    printf("answer: %d\n", isPalindrome(121));
-    printf("answer: %d\n", isPalindrome(-121));
-    printf("answer: %d\n", isPalindrome(10));
+    printf("121 is palindrome? answer: %d\n", isPalindrome(121));
+    printf("-121 is palindrome? answer: %d\n", isPalindrome(-121));
+    printf("10 is palindrome? answer: %d\n", isPalindrome(10));
     return 0;
 }
 
-
 bool isPalindrome(int x) {
-    // single digit
-    int remaining, reversed_digit, digit;
+    int remaining, reversed_digit;
     remaining = x;
     reversed_digit = 0;
-    printf("remaining: %d\n", remaining);
-    if (x >=0 && x<10){
-        return true;
-    };
-    if ((x < 0) || (x%10==0)) {
+    if ((x < 0) || (x!=0 && x%10==0)) {
         return false;
     };
     while (remaining > reversed_digit){
-        digit = remaining % 10;
-        remaining = remaining/10;
-        reversed_digit = (reversed_digit*10) + digit;
-        printf("reversed_digit: %d\n", reversed_digit);
-        printf("remaining: %d\n", remaining);
+        reversed_digit = (reversed_digit*10) + (remaining % 10);
+        remaining /= 10;
     }
-    if ((reversed_digit== remaining) ||(reversed_digit/10) == remaining){
-        return true;
-    }
-    return false;
-    
-
+    return (reversed_digit== remaining) || (reversed_digit/10) == remaining;
 }
